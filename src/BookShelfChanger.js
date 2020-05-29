@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ShelfChanger = props => {
+const BookShelfChanger = props => {
   const { currentValue, availableShelves, onChange } = props;
   //return JSX
   return (
@@ -16,11 +16,11 @@ const ShelfChanger = props => {
   );
 };
 
-ShelfChanger.propTypes = {
+BookShelfChanger.propTypes = {
   currentValue: PropTypes.string.isRequired,
   availableShelves: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
 
-export default ShelfChanger;
+export default BookShelfChanger;

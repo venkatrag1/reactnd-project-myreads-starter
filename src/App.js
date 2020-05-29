@@ -3,7 +3,7 @@ import React from 'react'
 import './App.css'
 
 //Trial
-import ShelfChanger from './ShelfChanger'
+import BookShelfChanger from './BookShelfChanger'
 const availableShelves = [
   {
     value: "currentlyReading",
@@ -212,7 +212,7 @@ class BooksApp extends React.Component {
             </div>
           </div>
         )}
-      <ShelfChanger currentValue="willRead" availableShelves={availableShelves} onChange={(event) => {}} />
+      <BookShelfChanger currentValue="willRead" availableShelves={availableShelves} onChange={(event) => {}} />
       </div>
     )
   }
