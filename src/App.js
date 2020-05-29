@@ -2,6 +2,20 @@ import React from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
 
+//Trial
+import ShelfChanger from './ShelfChanger'
+const availableShelves = [
+  {
+    value: "currentlyReading",
+    text: "Currently Reading"
+  },
+  {
+    value: "willRead",
+    text: "Will Read"
+  }
+]
+//
+
 class BooksApp extends React.Component {
   state = {
     /**
@@ -198,6 +212,7 @@ class BooksApp extends React.Component {
             </div>
           </div>
         )}
+      <ShelfChanger currentValue="willRead" availableShelves={availableShelves} onChange={(event) => {}} />
       </div>
     )
   }
