@@ -1,25 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const BookShelfChanger = props => {
-  const { currentValue, availableShelves, onChange } = props;
-  //return JSX
-  return (
-    <div className="book-shelf-changer">
-        <select onChange={onChange} value={currentValue}>
+class BookShelfChanger extends Component {
+
+  handleShelfChange = event => {
+    const { value } = event.target;
+    this.props.onShelfChange(value);
+  }
+
+  render() {
+    const { currentShelf, shelves} = this.props;
+    //return JSX
+    return (
+      <div className="book-shelf-changer">
+        <select onChange={this.handleShelfChange} value={currentShelf}>
         <option value="move" disabled>Move to...</option>
-        {availableShelves.map(shelf => (
-            <option value={shelf.value}>{shelf.text}</option>
+        {shelves.map(shelf => (
+          <option key={shelf.name} value={shelf.name}>{shelf.displayText}</option>
         ))}
         </select>
-    </div>
-  );
-};
+      </div>
+    );
+  }
+}
 
 BookShelfChanger.propTypes = {
-  currentValue: PropTypes.string.isRequired,
-  availableShelves: PropTypes.array.isRequired,
-  onChange: PropTypes.func.isRequired,
+  currentShelf: PropTypes.string.isRequired,
+  shelves: PropTypes.array.isRequired,
+  onShelfChange: PropTypes.func.isRequired,
 };
 
 
