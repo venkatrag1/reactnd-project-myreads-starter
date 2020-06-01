@@ -1,7 +1,9 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
-import './App.css'
 import ListBooks from './ListBooks'
+import SearchBooks from './SearchBooks'
+import './App.css'
 
 
 class BooksApp extends React.Component {
@@ -28,6 +30,10 @@ class BooksApp extends React.Component {
     )
   }
 
+  getMatchingBooks = (query) => {
+    BooksAPI.search(query).then(books => {books.map(book => console.log(book.shelf))});
+  }
+
   render() {
     const shelves = [
       {
@@ -47,10 +53,14 @@ class BooksApp extends React.Component {
         displayText: "None"
       }
     ];
-
     return (
       <div className="app">
-      <ListBooks books={this.state.books} shelves={shelves} onShelfChange={this.updateShelf}/>
+        <Route exact path='/' render={() => (
+          <ListBooks books={this.state.books} shelves={shelves} onShelfChange={this.updateShelf} />
+        )} />
+        <Route path='/search' render={() => (
+          <SearchBooks getMatchingBooks={this.getMatchingBooks} shelves={shelves} onShelfChange={this.updateShelf} />
+        )} />
       </div>
     )
   }
