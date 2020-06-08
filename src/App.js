@@ -23,15 +23,11 @@ class BooksApp extends React.Component {
         book.shelf = shelf;
         const bookToUpdate = currentState.books.find(
             currentBook => currentBook.id === book.id);
-        (bookToUpdate === undefined && currentState.books.push(book)) || (bookToUpdate.shelf = book.shelf);
+        bookToUpdate === undefined ? currentState.books.push(book) : (bookToUpdate.shelf = book.shelf);
         return currentState;
       });
     }
     )
-  }
-
-  getMatchingBooks = (query) => {
-    BooksAPI.search(query).then(books => {books.map(book => console.log(book.shelf))});
   }
 
   render() {
@@ -59,7 +55,8 @@ class BooksApp extends React.Component {
           <ListBooks books={this.state.books} shelves={shelves} onShelfChange={this.updateShelf} />
         )} />
         <Route path='/search' render={() => (
-          <SearchBooks getMatchingBooks={this.getMatchingBooks} shelves={shelves} onShelfChange={this.updateShelf} />
+          <SearchBooks books={this.state.books} shelves={shelves} onShelfChange={this.updateShelf}
+            search={query => BooksAPI.search(query)}/>
         )} />
       </div>
     )
