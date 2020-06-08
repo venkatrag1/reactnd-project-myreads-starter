@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import debounce from 'lodash.debounce';
 import Book from './Book';
 
 class SearchBooks extends Component {
 
   state = {
-    query: '',
     matchingBooks: []
   }
 
-  componentDidMount() {
-    console.log(this.state.matchingBooks);
-  }
-
-  handleInputChange = (event) => {
-    event.preventDefault();
-    const query = event.target.value.trim();
+  updateMatchingBooks = (query) => {
+    query = query.trim();
     (query === '' || query === undefined) ? this.setState({query: '', matchingBooks: []}) : (
       this.props.search(query).then(searchResults => {
         searchResults.error ? console.log(searchResults.error) : this.setState({
@@ -33,10 +28,11 @@ class SearchBooks extends Component {
     );
   }
 
+  handleInputChange = debounce(this.updateMatchingBooks, 250);
+
   render() {
-    console.log(this.state.matchingBooks);
     const { shelves, onShelfChange } = this.props;
-    const { query , matchingBooks } = this.state;
+    const { matchingBooks } = this.state;
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -50,7 +46,8 @@ class SearchBooks extends Component {
                 However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                 you don't find a specific author or title. Every search is limited by search terms.
             */}
-            <input type="text" value={query} placeholder="Search by title or author" onChange={this.handleInputChange}/>
+            <input type="text" placeholder="Search by title or author"
+            onChange={(event) => this.handleInputChange(event.target.value)}/>
             </div>
         </div>
         <div className="search-books-results">
