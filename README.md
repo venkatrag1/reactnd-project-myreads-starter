@@ -5,8 +5,11 @@ them in one of three shelves by letting you search add, remove and move books ac
 shelves, keeping the display and backend in sync.
 
 
-## TL;DR
+## Installing and Running this app
 
+* install node and npm if not already present.
+* clone this repo or download and extract it. cd to the top level directory containing
+    package.json file
 * install all project dependencies with `npm install`. In addition to the modules
     provided in starter- jsdoc, lodash and react-router-dom were installed
 * start the development server with `npm start`
