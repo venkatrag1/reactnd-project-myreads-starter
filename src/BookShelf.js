@@ -1,7 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Book from './Book';
+import React from "react";
+import PropTypes from "prop-types";
+import Book from "./Book";
 
+/**
+ * @description Represents one type of bookshelf. Displays books as ordered list
+ *              under the given shelf title.
+ * @constructor
+ */
 const BookShelf = props => {
   const { books, shelfTitle, shelves, onShelfChange } = props;
   //return JSX

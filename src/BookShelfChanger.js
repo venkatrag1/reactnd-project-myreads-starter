@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
+/**
+ * @description Represents the sliding selector to change shelf option for a book
+ * @constructor
+ */
 class BookShelfChanger extends Component {
 
   handleShelfChange = event => {
@@ -29,6 +33,5 @@ BookShelfChanger.propTypes = {
   shelves: PropTypes.array.isRequired,
   onShelfChange: PropTypes.func.isRequired,
 };
-
 
 export default BookShelfChanger;

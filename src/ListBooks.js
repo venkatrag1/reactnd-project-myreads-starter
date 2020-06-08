@@ -1,11 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import BookShelf from './BookShelf';
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import BookShelf from "./BookShelf";
 
+/**
+ * @description Represents the "/" page. Loops over list of shelves and renders
+ *              the BookShelf component with the corresponding list of books
+ *              by filtering props.books on the shelf attribute. Add a link to
+ *              Search page at the end/
+ * @constructor
+ */
 const ListBooks = props => {
   const { books, shelves, onShelfChange } = props;
-  const displayedShelves = shelves.filter(shelf => shelf.name !== "none")
+  // Books with shelf = none will always be empty in the list returned by get
+  const displayedShelves = shelves.filter(shelf => shelf.name !== "none");
   //return JSX
   return (
     <div className="list-books">
